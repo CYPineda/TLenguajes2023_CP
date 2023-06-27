@@ -1,0 +1,31 @@
+package com.example.tlenguajes2023.configuracion;
+
+import static android.database.sqlite.SQLiteDatabase.*;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+
+import androidx.annotation.Nullable;
+
+public class SQLiteConnection extends SQLiteOpenHelper
+{
+    public SQLiteConnection(@Nullable Context context, @Nullable String name, @Nullable CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase)
+    {
+        /*Creacion de objetos de base de datos*/
+        sqLiteDatabase.execSQL(ConfigDB.CreateTBPersonas); //Creando la tabla de personas en sqlite...
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1)
+    {
+        sqLiteDatabase.execSQL(ConfigDB.DropTBPersonas);
+        onCreate(sqLiteDatabase);
+    }
+}
